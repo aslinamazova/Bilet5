@@ -1,0 +1,44 @@
+﻿@{
+    int count = 1;
+}
+@model List<Team>
+
+<div class="col-12">
+    <div class="bg-secondary rounded h-100 p-4">
+        <h6 class="mb-4">Team Table</h6>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end my-4">
+            <a class="btn btn-outline-danger me-md-2" asp-area="Admin" asp-controller="Teams" asp-action="Create">Create</a>
+        </div>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Surname</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">JobDescription</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Settings</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Team team in Model)
+                {
+                    <tr>
+                        <th>@count</th>
+                        <td>@team.Name</td>
+                        <td>@team.Surname</td>
+                        <td>@team.Position</td>
+                        <td>@team.JobDescription</td>
+                        <td><img src="~/assets/img/@team.ImagePath" height="150" /></td>
+                        <td>
+                            <a class="btn btn-outline-success" asp-area="Admin" asp-controller="Teams" asp-action="Update">Update</a>
+                            <a class="btn btn-outline-warning" asp-area="Admin" asp-controller="Teams" asp-action="Delete">Delete</a>
+                        </td>
+                    </tr>
+                    count++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
